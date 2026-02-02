@@ -3,170 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olympuss - Entrena con Criterio</title>
+<title>Olympuss 3D</title>
 <style>
-  /* Paleta fuerza / oscura */
-  :root{
-    --dark-blue:#0a0f1e;
-    --deep-gray:#1c1f2b;
-    --gold:#FFD700;
-    --white:#f5f5f5;
-    --accent:#ff4e00;
-  }
-
-  body{
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:var(--dark-blue);
-    color:var(--white);
-    scroll-behavior:smooth;
-  }
-
+  body, html {margin:0; padding:0; overflow-x:hidden; font-family:'Poppins',sans-serif; background:#0a0f1e; color:#f5f5f5;}
   h1,h2,h3,h4{margin:0 0 1rem 0;}
   p{line-height:1.6;}
-
-  section{
-    padding:6rem 2rem;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    opacity:0;
-    transform:translateY(50px);
-    transition: all 0.8s ease-out;
-  }
-  section.visible{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-  /* HERO */
-  .hero{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    overflow:hidden;
-  }
-
-  .hero h1{
-    font-size:3rem;
-    margin-bottom:1rem;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    color:var(--gold);
-    text-shadow:0 2px 10px rgba(0,0,0,0.7);
-  }
-  .hero h2{
-    font-size:1.5rem;
-    font-weight:400;
-    margin-bottom:2rem;
-  }
-
-  .hero button{
-    margin-top:2rem;
-    padding:1rem 2rem;
-    font-size:1.2rem;
-    background:var(--gold);
-    color:var(--dark-blue);
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    transition: all 0.3s ease;
-  }
-  .hero button:hover{
-    transform: scale(1.05) rotate(-1deg);
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
-  }
-
-  .hero img{
-    width:120px;
-    margin-top:2rem;
-    animation: spin 6s linear infinite;
-  }
-  @keyframes spin{
-    0%{transform:rotate(0deg);}
-    100%{transform:rotate(360deg);}
-  }
-
-  /* SECCIONES */
-  .section-light{
-    background:var(--deep-gray);
-    border-radius:15px;
-    padding:4rem 2rem;
-    max-width:1000px;
-    margin:2rem 0;
-  }
-
-  .steps-grid{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:3rem;
-    margin-top:2rem;
-  }
-  .step{
-    flex:1 1 200px;
-    text-align:center;
-    padding:2rem 1rem;
-    border-radius:15px;
-    background:rgba(255,255,255,0.05);
-    box-shadow:0 6px 20px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor:pointer;
-  }
-  .step:hover{
-    transform: translateY(-5px);
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
-  }
-  .step h4{
-    margin:0.5rem 0;
-    font-size:1.2rem;
-    color:var(--gold);
-  }
-
-  .cta-section{
-    background:var(--accent);
-    color:var(--dark-blue);
-    padding:4rem 2rem;
-    border-radius:15px;
-    margin:2rem 0;
-  }
-
-  .cta-section input[type="email"]{
-    padding:1rem;
-    width:250px;
-    border:none;
-    border-radius:5px;
-    margin-right:1rem;
-  }
-  .cta-section button{
-    padding:1rem 2rem;
-    background:var(--gold);
-    color:var(--dark-blue);
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-  }
-
-  @media(max-width:768px){
-    .steps-grid{flex-direction:column;}
-    .hero h1{font-size:2.2rem;}
-    .hero h2{font-size:1.2rem;}
-  }
+  section{padding:6rem 2rem; display:flex; flex-direction:column; align-items:center; text-align:center; opacity:0; transform:translateY(50px); transition: all 0.8s ease-out;}
+  section.visible{opacity:1; transform:translateY(0);}
+  .section-light{background:#1c1f2b; border-radius:15px; padding:4rem 2rem; max-width:1000px; margin:2rem 0;}
+  .steps-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:3rem; margin-top:2rem;}
+  .step{flex:1 1 200px; text-align:center; padding:2rem 1rem; border-radius:15px; background:rgba(255,255,255,0.05); box-shadow:0 6px 20px rgba(0,0,0,0.2); cursor:pointer; transition:transform 0.3s ease, box-shadow 0.3s ease;}
+  .step:hover{transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+  .step h4{margin:0.5rem 0; color:#FFD700;}
+  .cta-section{background:#ff4e00; color:#0a0f1e; padding:4rem 2rem; border-radius:15px; margin:2rem 0;}
+  .cta-section input[type="email"]{padding:1rem;width:250px;border:none;border-radius:5px;margin-right:1rem;}
+  .cta-section button{padding:1rem 2rem;background:#FFD700;color:#0a0f1e;border:none;border-radius:5px;cursor:pointer;}
+  button.cta{margin-top:2rem; padding:1rem 2rem; font-size:1.2rem; background:#FFD700;color:#0a0f1e;border:none;border-radius:10px; cursor:pointer; transition:all 0.3s ease;}
+  button.cta:hover{transform:scale(1.05) rotate(-1deg); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+  canvas#heroCanvas{position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;}
+  @media(max-width:768px){.steps-grid{flex-direction:column;}}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
-<section class="hero visible">
+<section class="hero visible" style="position:relative; min-height:100vh;">
   <h1>Olympuss</h1>
   <h2>Entrena con criterio. Progresa con lógica.</h2>
   <button class="cta" onclick="scrollToForm()">Quiero entrenar con criterio</button>
-  <img src="https://cdn-icons-png.flaticon.com/512/2910/2910762.png" alt="Mancuerna">
+  <canvas id="heroCanvas"></canvas>
 </section>
 
 <!-- Submensaje -->
@@ -220,8 +85,12 @@
   </form>
 </section>
 
+<!-- Three.js y loaders -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
+
 <script>
-  // Scroll suave al formulario
+  // Scroll al formulario
   function scrollToForm(){
     document.getElementById('form-section').scrollIntoView({behavior:'smooth'});
   }
@@ -230,14 +99,51 @@
   const sections = document.querySelectorAll('.section');
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-      }
+      if(entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, {threshold:0.2});
-
   sections.forEach(section => observer.observe(section));
-</script>
 
+  // --- THREE.JS HERO ---
+  const canvas = document.getElementById('heroCanvas');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,0.1,1000);
+  camera.position.z = 3;
+
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const light = new THREE.DirectionalLight(0xffffff,1);
+  light.position.set(5,5,5);
+  scene.add(light);
+
+  // Cargar modelo GLTF de mancuerna (ejemplo público)
+  const loader = new THREE.GLTFLoader();
+  let dumbbell;
+  loader.load('https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/Duck/glTF/Duck.gltf', function(gltf){
+    dumbbell = gltf.scene;
+    dumbbell.scale.set(0.5,0.5,0.5); // ajustar tamaño
+    scene.add(dumbbell);
+  });
+
+  // Animación
+  function animate(){
+    requestAnimationFrame(animate);
+    if(dumbbell){
+      dumbbell.rotation.y += 0.01;
+      let scrollY = window.scrollY/window.innerHeight;
+      dumbbell.position.y = -scrollY*0.5;
+    }
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', ()=>{
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+</script>
 </body>
 </html>
