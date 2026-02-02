@@ -5,20 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Olympuss - Entrena con Criterio</title>
   <style>
-    /* --- Paleta de colores fuerza / oscura --- */
-    :root {
-      --dark-blue: #0a0f1e;
-      --deep-gray: #1c1f2b;
-      --gold: #FFD700;
-      --white: #f5f5f5;
-      --accent: #ff4e00;
-    }
-
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: var(--dark-blue);
-      color: var(--white);
+      background: #0a0f1e;
+      color: #f5f5f5;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
@@ -47,18 +38,15 @@
       transform: translateY(0);
     }
 
-    /* --- HERO --- */
+    /* --- Hero --- */
     .hero {
       position: relative;
-      background: url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?fit=crop&w=1920&q=80') no-repeat center center/cover;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: var(--white);
-      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-      overflow: hidden;
+      text-align: center;
     }
 
     .hero h1 {
@@ -66,6 +54,8 @@
       margin-bottom: 1rem;
       text-transform: uppercase;
       letter-spacing: 2px;
+      color: #FFD700;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
     }
 
     .hero h2 {
@@ -78,8 +68,8 @@
       margin-top: 2rem;
       padding: 1rem 2rem;
       font-size: 1.2rem;
-      background: var(--gold);
-      color: var(--dark-blue);
+      background: #FFD700;
+      color: #0a0f1e;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -91,30 +81,23 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    /* --- Animación mancuerna --- */
-    .dumbbell {
+    canvas {
       position: absolute;
-      width: 120px;
-      bottom: 20%;
-      animation: roll 4s linear infinite;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
 
-    @keyframes roll {
-      0% { transform: rotate(0deg) translateX(-50px); }
-      50% { transform: rotate(180deg) translateX(50px); }
-      100% { transform: rotate(360deg) translateX(-50px); }
-    }
-
-    /* --- Secciones --- */
     .section-light {
-      background: var(--deep-gray);
+      background: #1c1f2b;
       border-radius: 15px;
       padding: 4rem 2rem;
       max-width: 1000px;
       margin: 2rem 0;
     }
 
-    /* --- Método pasos --- */
     .steps-grid {
       display: flex;
       flex-wrap: wrap;
@@ -131,6 +114,7 @@
       background: rgba(255,255,255,0.05);
       box-shadow: 0 6px 20px rgba(0,0,0,0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
 
     .step:hover {
@@ -138,43 +122,26 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    .step img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 1rem;
-    }
-
     .step h4 {
       margin: 0.5rem 0;
       font-size: 1.2rem;
-      color: var(--gold);
+      color: #FFD700;
     }
 
-    .step p {
-      font-size: 0.95rem;
-      opacity: 0.85;
-    }
-
-    /* --- Comparativa / CTA final --- */
     .cta-section {
-      background: var(--accent);
-      color: var(--dark-blue);
+      background: #ff4e00;
+      color: #0a0f1e;
       padding: 4rem 2rem;
       border-radius: 15px;
       margin: 2rem 0;
     }
 
-    .cta-section button {
-      margin-top: 2rem;
-    }
-
-    /* --- Responsive --- */
-    @media (max-width: 768px) {
+    @media (max-width:768px){
       .steps-grid {
         flex-direction: column;
       }
-      .hero h1 { font-size: 2.2rem; }
-      .hero h2 { font-size: 1.2rem; }
+      .hero h1 { font-size:2.2rem;}
+      .hero h2 { font-size:1.2rem;}
     }
   </style>
 </head>
@@ -185,7 +152,6 @@
     <h1>Olympuss</h1>
     <h2>Entrena con criterio. Progresa con lógica.</h2>
     <button class="cta">Quiero entrenar con criterio</button>
-    <img src="https://cdn-icons-png.flaticon.com/512/285/285654.png" alt="Mancuerna" class="dumbbell">
   </section>
 
   <!-- Submensaje claro -->
@@ -210,26 +176,10 @@
   <section class="section section-light">
     <h3>Entrena con criterio gracias a nuestra IA</h3>
     <div class="steps-grid">
-      <div class="step">
-        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910766.png" alt="Registrar">
-        <h4>1️⃣ Registra tus series</h4>
-        <p>Introduce tus pesos, repeticiones y sets cada día de entrenamiento.</p>
-      </div>
-      <div class="step">
-        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910760.png" alt="Analizar">
-        <h4>2️⃣ La IA analiza tu rendimiento</h4>
-        <p>Detecta fuerza, fatiga y progreso real de cada ejercicio.</p>
-      </div>
-      <div class="step">
-        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910753.png" alt="Ajustar">
-        <h4>3️⃣ Ajusta automáticamente</h4>
-        <p>Modifica pesos, reps y volumen según tu capacidad actual.</p>
-      </div>
-      <div class="step">
-        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910750.png" alt="Explicar">
-        <h4>4️⃣ Te explica cada cambio</h4>
-        <p>Entiende el porqué de cada ajuste para aprender a progresar.</p>
-      </div>
+      <div class="step">1️⃣ Registra tus series</div>
+      <div class="step">2️⃣ La IA analiza tu rendimiento</div>
+      <div class="step">3️⃣ Ajusta automáticamente</div>
+      <div class="step">4️⃣ Te explica cada cambio</div>
     </div>
   </section>
 
@@ -245,12 +195,6 @@
     <p>❌ No es para retos vacíos ni entrenar sin cabeza.</p>
   </section>
 
-  <!-- Comparativa implícita -->
-  <section class="section section-light">
-    <h3>Por qué somos diferentes</h3>
-    <p>No usamos trucos visuales ni magia. Cada recomendación tiene un motivo.</p>
-  </section>
-
   <!-- CTA final -->
   <section class="section cta-section">
     <h3>Empieza a entrenar con sentido hoy</h3>
@@ -258,20 +202,75 @@
     <button class="cta">Quiero entrenar mejor</button>
   </section>
 
+  <!-- Three.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
-    // Animaciones de scroll
+    // --- Three.js: Mancuerna 3D ---
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    const renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Luz
+    const light = new THREE.DirectionalLight(0xffffff,1);
+    light.position.set(5,5,5);
+    scene.add(light);
+
+    // Mancuerna (simulada con cilindro + discos)
+    const group = new THREE.Group();
+
+    const shaftGeom = new THREE.CylinderGeometry(0.05,0.05,2,32);
+    const shaftMat = new THREE.MeshStandardMaterial({color:0xFFD700});
+    const shaft = new THREE.Mesh(shaftGeom, shaftMat);
+    group.add(shaft);
+
+    const discGeom = new THREE.CylinderGeometry(0.3,0.3,0.1,32);
+    const discMat = new THREE.MeshStandardMaterial({color:0xaaaaaa});
+    const disc1 = new THREE.Mesh(discGeom, discMat);
+    disc1.position.x = 1;
+    const disc2 = disc1.clone();
+    disc2.position.x = -1;
+    group.add(disc1);
+    group.add(disc2);
+
+    scene.add(group);
+
+    // Animación
+    function animate() {
+      requestAnimationFrame(animate);
+      // Rota mancuerna lentamente
+      group.rotation.y += 0.02;
+      group.rotation.z += 0.01;
+
+      // Mueve según scroll
+      let scrollY = window.scrollY / window.innerHeight;
+      group.position.y = -scrollY*2;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', ()=>{
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Animaciones de scroll para secciones
     const sections = document.querySelectorAll('.section');
-    const options = { threshold: 0.2 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
           entry.target.classList.add('visible');
         }
       });
-    }, options);
+    }, {threshold:0.2});
 
     sections.forEach(section => observer.observe(section));
-  </script>
 
+  </script>
 </body>
 </html>
