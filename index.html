@@ -3,31 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olympuss 3D</title>
+<title>Olympuss - Entrena con criterio</title>
 <style>
-  body, html {margin:0; padding:0; overflow-x:hidden; font-family:'Poppins',sans-serif; background:#0a0f1e; color:#f5f5f5;}
-  h1,h2,h3,h4{margin:0 0 1rem 0;}
-  p{line-height:1.6;}
-  section{padding:6rem 2rem; display:flex; flex-direction:column; align-items:center; text-align:center; opacity:0; transform:translateY(50px); transition: all 0.8s ease-out;}
-  section.visible{opacity:1; transform:translateY(0);}
-  .section-light{background:#1c1f2b; border-radius:15px; padding:4rem 2rem; max-width:1000px; margin:2rem 0;}
-  .steps-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:3rem; margin-top:2rem;}
-  .step{flex:1 1 200px; text-align:center; padding:2rem 1rem; border-radius:15px; background:rgba(255,255,255,0.05); box-shadow:0 6px 20px rgba(0,0,0,0.2); cursor:pointer; transition:transform 0.3s ease, box-shadow 0.3s ease;}
-  .step:hover{transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
-  .step h4{margin:0.5rem 0; color:#FFD700;}
-  .cta-section{background:#ff4e00; color:#0a0f1e; padding:4rem 2rem; border-radius:15px; margin:2rem 0;}
-  .cta-section input[type="email"]{padding:1rem;width:250px;border:none;border-radius:5px;margin-right:1rem;}
-  .cta-section button{padding:1rem 2rem;background:#FFD700;color:#0a0f1e;border:none;border-radius:5px;cursor:pointer;}
-  button.cta{margin-top:2rem; padding:1rem 2rem; font-size:1.2rem; background:#FFD700;color:#0a0f1e;border:none;border-radius:10px; cursor:pointer; transition:all 0.3s ease;}
-  button.cta:hover{transform:scale(1.05) rotate(-1deg); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
-  canvas#heroCanvas{position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;}
+  :root {
+    --dark:#0a0f1e;
+    --deep:#1c1f2b;
+    --gold:#FFD700;
+    --accent:#ff4e00;
+    --white:#f5f5f5;
+  }
+
+  * {margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth;}
+  body {font-family:'Poppins',sans-serif; background:var(--dark); color:var(--white);}
+  h1,h2,h3,h4{margin-bottom:1rem;}
+  p,ul{line-height:1.6; margin-bottom:1rem;}
+  ul{list-style:none; padding:0;}
+
+  section {
+    width:100vw;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    opacity:0;
+    transform:translateY(50px);
+    transition: all 0.8s ease-out;
+  }
+  section.visible {opacity:1; transform:translateY(0);}
+
+  .full-section {position:relative; overflow:hidden;}
+
+  /* Hero */
+  .hero h1 {font-size:3rem; color:var(--gold); text-shadow:0 2px 10px rgba(0,0,0,0.7);}
+  .hero h2 {font-size:1.5rem; margin-bottom:2rem;}
+  .cta {padding:1rem 2rem; font-size:1.2rem; background:var(--gold); color:var(--dark); border:none; border-radius:10px; cursor:pointer; transition:all 0.3s ease;}
+  .cta:hover {transform:scale(1.05) rotate(-1deg); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+  canvas {position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;}
+
+  .section-light {background:var(--deep); width:100vw; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem;}
+
+  .steps-grid {display:flex; flex-wrap:wrap; justify-content:center; gap:3rem; margin-top:2rem;}
+  .step {flex:1 1 200px; text-align:center; padding:2rem 1rem; border-radius:15px; background:rgba(255,255,255,0.05); box-shadow:0 6px 20px rgba(0,0,0,0.2); cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;}
+  .step:hover {transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+  .step h4 {color:var(--gold); margin-bottom:0.5rem;}
+
+  /* CTA final */
+  .cta-section {background:var(--accent); color:var(--dark); padding:4rem 2rem; display:flex; flex-direction:column; justify-content:center; align-items:center;}
+  .cta-section input[type="email"]{padding:1rem; width:250px; border:none; border-radius:5px; margin:1rem 0;}
+  .cta-section button{padding:1rem 2rem; background:var(--gold); color:var(--dark); border:none; border-radius:5px; cursor:pointer;}
+  .socials {margin-top:2rem; display:flex; gap:2rem; font-size:1.2rem;}
+
   @media(max-width:768px){.steps-grid{flex-direction:column;}}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
-<section class="hero visible" style="position:relative; min-height:100vh;">
+<section class="hero full-section visible">
   <h1>Olympuss</h1>
   <h2>Entrena con criterio. Progresa con lógica.</h2>
   <button class="cta" onclick="scrollToForm()">Quiero entrenar con criterio</button>
@@ -83,32 +117,37 @@
     <input type="email" placeholder="Tu email" required>
     <button type="submit">Únete ahora</button>
   </form>
+  <div class="socials">
+    <a href="#" target="_blank">Instagram</a>
+    <a href="#" target="_blank">Facebook</a>
+    <a href="#" target="_blank">Twitter</a>
+    <a href="mailto:contact@olympuss.com">Email</a>
+  </div>
 </section>
 
-<!-- Three.js y loaders -->
+<!-- Three.js -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-  // Scroll al formulario
   function scrollToForm(){
     document.getElementById('form-section').scrollIntoView({behavior:'smooth'});
   }
 
-  // Animaciones de scroll para secciones
+  // Animación scroll secciones
   const sections = document.querySelectorAll('.section');
-  const observer = new IntersectionObserver((entries)=>{
+  const observer = new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, {threshold:0.2});
-  sections.forEach(section => observer.observe(section));
+  },{threshold:0.2});
+  sections.forEach(section=>observer.observe(section));
 
-  // --- THREE.JS HERO ---
+  // --- Three.js Hero ---
   const canvas = document.getElementById('heroCanvas');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,0.1,1000);
-  camera.position.z = 3;
+  camera.position.z = 4;
 
   const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -117,22 +156,24 @@
   light.position.set(5,5,5);
   scene.add(light);
 
-  // Cargar modelo GLTF de mancuerna (ejemplo público)
+  const ambient = new THREE.AmbientLight(0xffffff,0.3);
+  scene.add(ambient);
+
+  // Cargar GLTF del disco de competición (ejemplo: reemplazar URL con tu disco de 25kg real)
   const loader = new THREE.GLTFLoader();
-  let dumbbell;
-  loader.load('https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/Duck/glTF/Duck.gltf', function(gltf){
-    dumbbell = gltf.scene;
-    dumbbell.scale.set(0.5,0.5,0.5); // ajustar tamaño
-    scene.add(dumbbell);
+  let plate;
+  loader.load('https://rawcdn.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxTextured/glTF/BoxTextured.gltf', function(gltf){
+    plate = gltf.scene;
+    plate.scale.set(1.2,1.2,1.2);
+    scene.add(plate);
   });
 
-  // Animación
   function animate(){
     requestAnimationFrame(animate);
-    if(dumbbell){
-      dumbbell.rotation.y += 0.01;
+    if(plate){
+      plate.rotation.y += 0.01; // rota continuamente
       let scrollY = window.scrollY/window.innerHeight;
-      dumbbell.position.y = -scrollY*0.5;
+      plate.position.y = -scrollY*0.5;
     }
     renderer.render(scene, camera);
   }
@@ -143,7 +184,7 @@
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
-
 </script>
+
 </body>
 </html>
