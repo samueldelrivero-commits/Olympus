@@ -5,24 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Olympuss - Entrena con Criterio</title>
   <style>
-    /* --- Colores Olimpo --- */
+    /* --- Paleta de colores fuerza / oscura --- */
     :root {
-      --blue-olympo: #0a1f3d;
-      --white-olympo: #ffffff;
-      --gold-olympo: #FFD700;
+      --dark-blue: #0a0f1e;
+      --deep-gray: #1c1f2b;
+      --gold: #FFD700;
+      --white: #f5f5f5;
+      --accent: #ff4e00;
     }
 
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: var(--blue-olympo);
-      color: var(--white-olympo);
+      background: var(--dark-blue);
+      color: var(--white);
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
-    h1, h2, h3, h4 {
+    h1,h2,h3,h4 {
       margin: 0 0 1rem 0;
+    }
+
+    p {
+      line-height: 1.6;
     }
 
     section {
@@ -41,29 +47,39 @@
       transform: translateY(0);
     }
 
-    /* --- Hero --- */
+    /* --- HERO --- */
     .hero {
+      position: relative;
       background: url('https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?fit=crop&w=1920&q=80') no-repeat center center/cover;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: var(--white-olympo);
+      color: var(--white);
       text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      overflow: hidden;
     }
 
-    .hero img {
-      width: 150px;
+    .hero h1 {
+      font-size: 3rem;
       margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .hero h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
     }
 
     .cta {
       margin-top: 2rem;
       padding: 1rem 2rem;
       font-size: 1.2rem;
-      background: var(--gold-olympo);
-      color: var(--blue-olympo);
+      background: var(--gold);
+      color: var(--dark-blue);
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -75,14 +91,30 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    /* --- Bloques de contenido --- */
+    /* --- Animación mancuerna --- */
+    .dumbbell {
+      position: absolute;
+      width: 120px;
+      bottom: 20%;
+      animation: roll 4s linear infinite;
+    }
+
+    @keyframes roll {
+      0% { transform: rotate(0deg) translateX(-50px); }
+      50% { transform: rotate(180deg) translateX(50px); }
+      100% { transform: rotate(360deg) translateX(-50px); }
+    }
+
+    /* --- Secciones --- */
     .section-light {
-      background: rgba(255,255,255,0.05);
+      background: var(--deep-gray);
       border-radius: 15px;
       padding: 4rem 2rem;
       max-width: 1000px;
+      margin: 2rem 0;
     }
 
+    /* --- Método pasos --- */
     .steps-grid {
       display: flex;
       flex-wrap: wrap;
@@ -115,8 +147,131 @@
     .step h4 {
       margin: 0.5rem 0;
       font-size: 1.2rem;
-      color: var(--gold-olympo);
+      color: var(--gold);
     }
 
     .step p {
-      font-size: 
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* --- Comparativa / CTA final --- */
+    .cta-section {
+      background: var(--accent);
+      color: var(--dark-blue);
+      padding: 4rem 2rem;
+      border-radius: 15px;
+      margin: 2rem 0;
+    }
+
+    .cta-section button {
+      margin-top: 2rem;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .steps-grid {
+        flex-direction: column;
+      }
+      .hero h1 { font-size: 2.2rem; }
+      .hero h2 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero visible">
+    <h1>Olympuss</h1>
+    <h2>Entrena con criterio. Progresa con lógica.</h2>
+    <button class="cta">Quiero entrenar con criterio</button>
+    <img src="https://cdn-icons-png.flaticon.com/512/285/285654.png" alt="Mancuerna" class="dumbbell">
+  </section>
+
+  <!-- Submensaje claro -->
+  <section class="section section-light">
+    <h3>Aprende cómo y por qué progresar</h3>
+    <p>La mayoría de apps te dan rutinas. Nosotros te enseñamos a progresar con lógica, sin adivinar pesos, sin estancarte y sin depender de un entrenador personal.</p>
+  </section>
+
+  <!-- Problema -->
+  <section class="section section-light">
+    <h3>¿Te suena esto?</h3>
+    <ul>
+      <li>Entrenas semanas… pero no sabes si mejoras</li>
+      <li>Subes peso “porque toca”</li>
+      <li>Cambias de rutina cada mes</li>
+      <li>No sabes si fallas por falta de fuerza o fatiga</li>
+    </ul>
+    <p>👉 No es tu culpa. Nadie te enseñó a progresar bien.</p>
+  </section>
+
+  <!-- Método -->
+  <section class="section section-light">
+    <h3>Entrena con criterio gracias a nuestra IA</h3>
+    <div class="steps-grid">
+      <div class="step">
+        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910766.png" alt="Registrar">
+        <h4>1️⃣ Registra tus series</h4>
+        <p>Introduce tus pesos, repeticiones y sets cada día de entrenamiento.</p>
+      </div>
+      <div class="step">
+        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910760.png" alt="Analizar">
+        <h4>2️⃣ La IA analiza tu rendimiento</h4>
+        <p>Detecta fuerza, fatiga y progreso real de cada ejercicio.</p>
+      </div>
+      <div class="step">
+        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910753.png" alt="Ajustar">
+        <h4>3️⃣ Ajusta automáticamente</h4>
+        <p>Modifica pesos, reps y volumen según tu capacidad actual.</p>
+      </div>
+      <div class="step">
+        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910750.png" alt="Explicar">
+        <h4>4️⃣ Te explica cada cambio</h4>
+        <p>Entiende el porqué de cada ajuste para aprender a progresar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quién es -->
+  <section class="section section-light">
+    <h3>Hecha para ti si:</h3>
+    <ul>
+      <li>Entrenas en gimnasio</li>
+      <li>Quieres mejorar de verdad</li>
+      <li>No quieres rutinas genéricas</li>
+      <li>Te importa el progreso, no solo “sudar”</li>
+    </ul>
+    <p>❌ No es para retos vacíos ni entrenar sin cabeza.</p>
+  </section>
+
+  <!-- Comparativa implícita -->
+  <section class="section section-light">
+    <h3>Por qué somos diferentes</h3>
+    <p>No usamos trucos visuales ni magia. Cada recomendación tiene un motivo.</p>
+  </section>
+
+  <!-- CTA final -->
+  <section class="section cta-section">
+    <h3>Empieza a entrenar con sentido hoy</h3>
+    <p>Únete a la lista de acceso anticipado (plazas limitadas)</p>
+    <button class="cta">Quiero entrenar mejor</button>
+  </section>
+
+  <script>
+    // Animaciones de scroll
+    const sections = document.querySelectorAll('.section');
+    const options = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, options);
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
