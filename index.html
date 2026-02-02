@@ -1,276 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Olympuss - Entrena con Criterio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #0a0f1e;
-      color: #f5f5f5;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olympuss - Entrena con Criterio</title>
+<style>
+  /* Paleta fuerza / oscura */
+  :root{
+    --dark-blue:#0a0f1e;
+    --deep-gray:#1c1f2b;
+    --gold:#FFD700;
+    --white:#f5f5f5;
+    --accent:#ff4e00;
+  }
 
-    h1,h2,h3,h4 {
-      margin: 0 0 1rem 0;
-    }
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:var(--dark-blue);
+    color:var(--white);
+    scroll-behavior:smooth;
+  }
 
-    p {
-      line-height: 1.6;
-    }
+  h1,h2,h3,h4{margin:0 0 1rem 0;}
+  p{line-height:1.6;}
 
-    section {
-      padding: 6rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease-out;
-    }
+  section{
+    padding:6rem 2rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    opacity:0;
+    transform:translateY(50px);
+    transition: all 0.8s ease-out;
+  }
+  section.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+  }
 
-    /* --- Hero --- */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+  .hero h1{
+    font-size:3rem;
+    margin-bottom:1rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:var(--gold);
+    text-shadow:0 2px 10px rgba(0,0,0,0.7);
+  }
+  .hero h2{
+    font-size:1.5rem;
+    font-weight:400;
+    margin-bottom:2rem;
+  }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #FFD700;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-    }
+  .hero button{
+    margin-top:2rem;
+    padding:1rem 2rem;
+    font-size:1.2rem;
+    background:var(--gold);
+    color:var(--dark-blue);
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition: all 0.3s ease;
+  }
+  .hero button:hover{
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  }
 
-    .hero h2 {
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin-bottom: 2rem;
-    }
+  .hero img{
+    width:120px;
+    margin-top:2rem;
+    animation: spin 6s linear infinite;
+  }
+  @keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+  }
 
-    .cta {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      background: #FFD700;
-      color: #0a0f1e;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+  /* SECCIONES */
+  .section-light{
+    background:var(--deep-gray);
+    border-radius:15px;
+    padding:4rem 2rem;
+    max-width:1000px;
+    margin:2rem 0;
+  }
 
-    .cta:hover {
-      transform: scale(1.05) rotate(-1deg);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
+  .steps-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:3rem;
+    margin-top:2rem;
+  }
+  .step{
+    flex:1 1 200px;
+    text-align:center;
+    padding:2rem 1rem;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor:pointer;
+  }
+  .step:hover{
+    transform: translateY(-5px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  }
+  .step h4{
+    margin:0.5rem 0;
+    font-size:1.2rem;
+    color:var(--gold);
+  }
 
-    canvas {
-      position: absolute;
-      top:0;
-      left:0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
+  .cta-section{
+    background:var(--accent);
+    color:var(--dark-blue);
+    padding:4rem 2rem;
+    border-radius:15px;
+    margin:2rem 0;
+  }
 
-    .section-light {
-      background: #1c1f2b;
-      border-radius: 15px;
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: 2rem 0;
-    }
+  .cta-section input[type="email"]{
+    padding:1rem;
+    width:250px;
+    border:none;
+    border-radius:5px;
+    margin-right:1rem;
+  }
+  .cta-section button{
+    padding:1rem 2rem;
+    background:var(--gold);
+    color:var(--dark-blue);
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+  }
 
-    .steps-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 3rem;
-      margin-top: 2rem;
-    }
-
-    .step {
-      flex: 1 1 200px;
-      text-align: center;
-      padding: 2rem 1rem;
-      border-radius: 15px;
-      background: rgba(255,255,255,0.05);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .step:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .step h4 {
-      margin: 0.5rem 0;
-      font-size: 1.2rem;
-      color: #FFD700;
-    }
-
-    .cta-section {
-      background: #ff4e00;
-      color: #0a0f1e;
-      padding: 4rem 2rem;
-      border-radius: 15px;
-      margin: 2rem 0;
-    }
-
-    @media (max-width:768px){
-      .steps-grid {
-        flex-direction: column;
-      }
-      .hero h1 { font-size:2.2rem;}
-      .hero h2 { font-size:1.2rem;}
-    }
-  </style>
+  @media(max-width:768px){
+    .steps-grid{flex-direction:column;}
+    .hero h1{font-size:2.2rem;}
+    .hero h2{font-size:1.2rem;}
+  }
+</style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero visible">
-    <h1>Olympuss</h1>
-    <h2>Entrena con criterio. Progresa con lógica.</h2>
-    <button class="cta">Quiero entrenar con criterio</button>
-  </section>
+<!-- HERO -->
+<section class="hero visible">
+  <h1>Olympuss</h1>
+  <h2>Entrena con criterio. Progresa con lógica.</h2>
+  <button class="cta" onclick="scrollToForm()">Quiero entrenar con criterio</button>
+  <img src="https://cdn-icons-png.flaticon.com/512/2910/2910762.png" alt="Mancuerna">
+</section>
 
-  <!-- Submensaje claro -->
-  <section class="section section-light">
-    <h3>Aprende cómo y por qué progresar</h3>
-    <p>La mayoría de apps te dan rutinas. Nosotros te enseñamos a progresar con lógica, sin adivinar pesos, sin estancarte y sin depender de un entrenador personal.</p>
-  </section>
+<!-- Submensaje -->
+<section class="section section-light">
+  <h3>Aprende cómo y por qué progresar</h3>
+  <p>La mayoría de apps te dan rutinas. Nosotros te enseñamos a progresar con lógica, sin adivinar pesos, sin estancarte y sin depender de un entrenador personal.</p>
+</section>
 
-  <!-- Problema -->
-  <section class="section section-light">
-    <h3>¿Te suena esto?</h3>
-    <ul>
-      <li>Entrenas semanas… pero no sabes si mejoras</li>
-      <li>Subes peso “porque toca”</li>
-      <li>Cambias de rutina cada mes</li>
-      <li>No sabes si fallas por falta de fuerza o fatiga</li>
-    </ul>
-    <p>👉 No es tu culpa. Nadie te enseñó a progresar bien.</p>
-  </section>
+<!-- Problema -->
+<section class="section section-light">
+  <h3>¿Te suena esto?</h3>
+  <ul>
+    <li>Entrenas semanas… pero no sabes si mejoras</li>
+    <li>Subes peso “porque toca”</li>
+    <li>Cambias de rutina cada mes</li>
+    <li>No sabes si fallas por falta de fuerza o fatiga</li>
+  </ul>
+  <p>👉 No es tu culpa. Nadie te enseñó a progresar bien.</p>
+</section>
 
-  <!-- Método -->
-  <section class="section section-light">
-    <h3>Entrena con criterio gracias a nuestra IA</h3>
-    <div class="steps-grid">
-      <div class="step">1️⃣ Registra tus series</div>
-      <div class="step">2️⃣ La IA analiza tu rendimiento</div>
-      <div class="step">3️⃣ Ajusta automáticamente</div>
-      <div class="step">4️⃣ Te explica cada cambio</div>
-    </div>
-  </section>
+<!-- Método -->
+<section class="section section-light">
+  <h3>Entrena con criterio gracias a nuestra IA</h3>
+  <div class="steps-grid">
+    <div class="step">1️⃣ Registra tus series</div>
+    <div class="step">2️⃣ La IA analiza tu rendimiento</div>
+    <div class="step">3️⃣ Ajusta automáticamente</div>
+    <div class="step">4️⃣ Te explica cada cambio</div>
+  </div>
+</section>
 
-  <!-- Para quién es -->
-  <section class="section section-light">
-    <h3>Hecha para ti si:</h3>
-    <ul>
-      <li>Entrenas en gimnasio</li>
-      <li>Quieres mejorar de verdad</li>
-      <li>No quieres rutinas genéricas</li>
-      <li>Te importa el progreso, no solo “sudar”</li>
-    </ul>
-    <p>❌ No es para retos vacíos ni entrenar sin cabeza.</p>
-  </section>
+<!-- Para quién es -->
+<section class="section section-light">
+  <h3>Hecha para ti si:</h3>
+  <ul>
+    <li>Entrenas en gimnasio</li>
+    <li>Quieres mejorar de verdad</li>
+    <li>No quieres rutinas genéricas</li>
+    <li>Te importa el progreso, no solo “sudar”</li>
+  </ul>
+  <p>❌ No es para retos vacíos ni entrenar sin cabeza.</p>
+</section>
 
-  <!-- CTA final -->
-  <section class="section cta-section">
-    <h3>Empieza a entrenar con sentido hoy</h3>
-    <p>Únete a la lista de acceso anticipado (plazas limitadas)</p>
-    <button class="cta">Quiero entrenar mejor</button>
-  </section>
+<!-- CTA final / Formulario -->
+<section class="section cta-section" id="form-section">
+  <h3>Empieza a entrenar con sentido hoy</h3>
+  <p>Únete a la lista de acceso anticipado (plazas limitadas)</p>
+  <form>
+    <input type="email" placeholder="Tu email" required>
+    <button type="submit">Únete ahora</button>
+  </form>
+</section>
 
-  <!-- Three.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-  <script>
-    // --- Three.js: Mancuerna 3D ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
+<script>
+  // Scroll suave al formulario
+  function scrollToForm(){
+    document.getElementById('form-section').scrollIntoView({behavior:'smooth'});
+  }
 
-    const renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    // Luz
-    const light = new THREE.DirectionalLight(0xffffff,1);
-    light.position.set(5,5,5);
-    scene.add(light);
-
-    // Mancuerna (simulada con cilindro + discos)
-    const group = new THREE.Group();
-
-    const shaftGeom = new THREE.CylinderGeometry(0.05,0.05,2,32);
-    const shaftMat = new THREE.MeshStandardMaterial({color:0xFFD700});
-    const shaft = new THREE.Mesh(shaftGeom, shaftMat);
-    group.add(shaft);
-
-    const discGeom = new THREE.CylinderGeometry(0.3,0.3,0.1,32);
-    const discMat = new THREE.MeshStandardMaterial({color:0xaaaaaa});
-    const disc1 = new THREE.Mesh(discGeom, discMat);
-    disc1.position.x = 1;
-    const disc2 = disc1.clone();
-    disc2.position.x = -1;
-    group.add(disc1);
-    group.add(disc2);
-
-    scene.add(group);
-
-    // Animación
-    function animate() {
-      requestAnimationFrame(animate);
-      // Rota mancuerna lentamente
-      group.rotation.y += 0.02;
-      group.rotation.z += 0.01;
-
-      // Mueve según scroll
-      let scrollY = window.scrollY / window.innerHeight;
-      group.position.y = -scrollY*2;
-
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', ()=>{
-      camera.aspect = window.innerWidth/window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+  // Animaciones de scroll para secciones
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
     });
+  }, {threshold:0.2});
 
-    // Animaciones de scroll para secciones
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {threshold:0.2});
+  sections.forEach(section => observer.observe(section));
+</script>
 
-    sections.forEach(section => observer.observe(section));
-
-  </script>
 </body>
 </html>
